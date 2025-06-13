@@ -1,5 +1,8 @@
 import 'package:camera/camera.dart';
+import 'package:chatapp/newScreen/landing_screen.dart';
 import 'package:chatapp/screens/home_screen.dart';
+import 'package:chatapp/newScreen/login_screen.dart';
+import 'package:chatapp/screens/landing_page.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.lightBlueAccent,
         fontFamily: "OpenSans"
       ),
-      home: HomeScreen() ,
+      home: LndingPage() ,
       debugShowCheckedModeBanner: false,
     );
   }

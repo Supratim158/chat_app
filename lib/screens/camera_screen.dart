@@ -9,7 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import 'camera_view.dart';
 
 class CameraScreen extends StatefulWidget {
-  const CameraScreen({super.key});
+  const CameraScreen({super.key, this.onImageSend});
+  final Function? onImageSend;
 
   @override
   State<CameraScreen> createState() => _CameraScreenState();
@@ -68,7 +69,11 @@ class _CameraScreenState extends State<CameraScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => CameraViewPage(path: file.path),
+          builder: (context) => CameraViewPage(
+              path: file.path,
+              onImageSend: widget.onImageSend,
+
+          ),
         ),
       );
     } catch (e) {

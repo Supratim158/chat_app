@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class CameraViewPage extends StatelessWidget {
-  const CameraViewPage({super.key, required this.path});
-  final String path;
+  const CameraViewPage({super.key, this.path, this.onImageSend});
+  final String? path;
+  final Function? onImageSend;
+  static TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,7 @@ class CameraViewPage extends StatelessWidget {
                   .size
                   .height - 150,
               child: Image.file(
-                File(path),
+                File(path!),
                 fit: BoxFit.cover,
               ),
             ),
@@ -83,6 +85,7 @@ class CameraViewPage extends StatelessWidget {
                     .width,
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 child: TextFormField(
+                  controller: _controller,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17,
@@ -104,10 +107,13 @@ class CameraViewPage extends StatelessWidget {
                       suffixIcon: CircleAvatar(
                         radius: 27,
                         backgroundColor: Colors.tealAccent[700],
-                        child: Icon(
+                        child: IconButton(onPressed: (){
+                          onImageSend!(path,_controller.text.trim());
+                        }, icon: Icon(
                           Icons.check,
                           color: Colors.white,
                           size: 27,
+                        ),
                         ),
                       )),
                 ),
